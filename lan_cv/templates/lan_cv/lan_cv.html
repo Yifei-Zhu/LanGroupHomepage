@@ -1,0 +1,91 @@
+<!-- templates/lan_cv/lan_cv.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet"  href="{% static 'lan_cv/lan_cv.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="photo-container">
+        <img src="{% static 'images/lan.jpg' %}" alt="lan_jpg">
+    </div>
+    <div class="bio-container">
+        <h1>Prof. Zhenggang Lan</h1>
+        <h3>Affiliation:</h3>
+        <p>
+            The Environmental Research Institute,<br>
+            MOE Key Laboratory of Theoretical Chemistry of Environment,<br>
+            South China Normal University, Guangzhou(510006), China.<br>
+        </p>
+        <h3>Tel:</h3>
+        <p>+86- 186 6943 2890 (mobile)</p>
+        <h3>Email:</h3>
+        <p> zhenggang.lan@m.scnu.edu.cn<br>zhenggang.lan@gmail.com </p>
+
+    </div>
+</div>
+
+<div class="experience-container">
+
+    <h2>Educational Experiences:</h2>
+    <ul>
+        <li>2003.08 - 2007.05: Ph.D, Technical University of Munich, Germany (Advisor: Prof. Dr. Wolfgang Domcke)</li>
+        <li>2000.09 - 2003.07: MS, Institute of Chemistry, Chinese Academy of Sciences (CAS), Beijing, China</li>
+        <li>1995.09 - 2000.07: BS, Department of Chemical Physics, University of Science and Technology of China, Hefei, China</li>
+    </ul>
+
+    <h2>Professional Experiences:</h2>
+    <ul>
+        <li>2018.09 - now: Professor in South China Normal University, Guangzhou, China</li>
+        <li>2011.05 - 2018.09: Professor in Qingdao Institute of Bioenergy and Bioprocess Technology, Chinese Academy of Sciences, Qingdao, China</li>
+        <li>2009.07 - 2011.04: Research Scientist, Max-Planck-Institute fuer Kohlenforschung, Muelheim, Germany</li>
+        <li>2008.03 - 2009.06: Postdoc Fellow in Max-Planck-Institute fuer Kohlenforschung, Muelheim. Germany (Advisor: Prof. Dr. Walter Thiel)</li>
+        <li>2007.06 - 2008.02: Postdoc in Technical University of Munich, Germany (Advisor: Prof. Dr. Wolfgang Domcke)</li>
+    </ul>
+    
+    <h2>Awards:</h2>
+    <ul>
+        <li>Excellent Ph.D Thesis, summa cum laude, Top score 1.0.</li>
+        <li>Hundred-Talent Program (Chinese Academy of Sciences)</li>
+    </ul>
+    
+    <h2>Research Interests:</h2>
+    <ul>
+        <li>Theoretical and Computational Chemistry</li>
+        <li>Photophysics and Photochemistry</li>
+        <li>Nonadiabatic Dynamics and Molecular Excited States</li>
+        <li>Quantum and Semiclassical dynamics</li>
+        <li>On-the-fly Dynamics and Multi-scale Simulation.</li>
+        <li>Machine Learning in Nonadiabatic Dynamics</li>
+    </ul>
+
+    <h2>Talks:</h2>
+    <ul>
+        {% for talk in talks %}
+        <li>
+            {{ talk.conference_in_EN }}, {{talk.city_in_EN}}, {{ talk.country_in_EN }},
+            {{ talk.start_date|date:"M d" }} -
+            {% if talk.start_date|date:"Y" == talk.end_date|date:"Y" %}
+                {% if talk.start_date|date:"M" == talk.end_date|date:"M" %}
+                    {{ talk.end_date|date:"d, Y" }}
+                {% else %}
+                    {{ talk.end_date|date:"M d, Y" }}
+                {% endif %}
+            {% else %}
+                {{ talk.start_date|date:"Y" }} - {{ talk.end_date|date:"M d, Y" }}
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Fundings:</h2>
+    <ul>
+    {% for funding in fundings %}
+        <li>{{ funding.source_in_En }} {{funding.category_in_En}} funding ({{funding.total_funding}} RMB)
+
+    {% endfor %}
+    </ul>
+
+{% endblock content %}

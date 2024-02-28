@@ -1,0 +1,53 @@
+<!-- templates/homepage/home.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet"  href="{% static 'homepage/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 你的主页特有内容 -->
+
+<div class="header-image"> <!-- 图片背景和文本 -->
+    <div class="header-text">Welcome to Lan Group</div>
+</div>
+
+<div class="profile-container">
+    <div class="photo-container">
+        <img src="{% static 'images/lan.jpg' %}" alt="lan_jpg">
+    </div>
+    <div class="bio-container">
+        <h1>Prof. Zhenggang Lan</h1>
+        <h3>Affiliation:</h3>
+        <p>
+            The Environmental Research Institute,<br>
+            MOE Key Laboratory of Theoretical Chemistry of Environment,<br>
+            South China Normal University, Guangzhou(510006), China.<br>
+        </p>
+        <h3>Tel:</h3>
+        <p>+86- 186 6943 2890 (mobile)</p>
+        <h3>Email:</h3>
+        <p> zhenggang.lan@m.scnu.edu.cn<br>zhenggang.lan@gmail.com </p>
+        <p>More information: <a href="{% url 'lan_view' %}">Click here</a></p>
+
+    </div>
+</div>
+
+<div class="research-interests">
+    <h1>Research Interest</h1>
+<ul>
+        <li>Theoretical and Computational Chemistry</li>
+        <li>Photophysics and Photochemistry</li>
+        <li>Nonadiabatic Dynamics and Molecular Excited States</li>
+        <li>Quantum and Semiclassical Dynamics</li>
+        <li>On-the-fly Dynamics and Multi-scale Simulation</li>
+        <li>Machine Learning in Nonadiabatic Dynamics</li>
+    </ul>
+</div>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'homepage/js/home.js' %}"></script>
+{% endblock %}

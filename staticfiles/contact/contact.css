@@ -1,0 +1,68 @@
+/* Add some space between form fields */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 16px; /* Increase font size for form fields */
+}
+
+/* Space between label and input */
+.form-field label {
+    margin-bottom: 5px;
+    font-size: 16px; /* Increase font size for labels */
+}
+
+/* Ensure the textarea aligns with the top */
+.message-field {
+    align-items: flex-start;
+}
+
+/* Container for the form */
+.contact-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    font-size: 18px; /* Increase font size for form container */
+}
+
+/* Style the form elements */
+.contact-form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make input fields take up the full container width */
+.contact-form-container input[type="text"],
+.contact-form-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Match the width of input fields */
+.contact-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Style the button */
+.contact-form-container form button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form-container form button:hover {
+    background-color: #0056b3;
+}

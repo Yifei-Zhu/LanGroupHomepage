@@ -1,0 +1,149 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    scroll-behavior: smooth;
+    font-size: 62.5%; /* 设置基础字体大小为10px，便于计算rem */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem; /* 以rem为单位 */
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+/* 所有导航项和logo都应该有一致的flex属性 */
+.navbar .logo, .navbar a, .navbar .dropdown {
+    flex: 1; /* 所有元素都等宽 */
+    text-align: center; /* 文本居中 */
+    color: white;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    display: block; /* 消除浮动 */
+}
+.navbar a {
+    font-size: 2rem;
+}
+.navbar .logo {
+    flex-grow: 1; /* Prevent the logo from growing */
+    font-size: 2.4rem; /* Larger font size */
+    font-weight: bold; /* Bold font weight */
+    padding-left: 2rem; /* Add some padding on the left */
+    /* margin-right: auto; */
+}
+/* 鼠标悬停效果 */
+.navbar .dropdown:hover .dropbtn {
+    background-color: #ddd;
+    color: black;
+    width: 100%;
+}
+.navbar a:hover, .navbar .logo:hover {
+    background-color:  #333;
+    color: #ddd;
+}
+
+
+/* 下拉菜单的按钮 */
+.dropdown .dropbtn {
+    font-size: 2rem; /* 设置与其他导航项相同的字体大小 */
+    background-color: inherit;
+    border: none;
+    outline: none;
+    color: inherit;
+    padding: 1rem 2rem; /* 与.navbar a保持一致 */
+    font-family: inherit;
+    margin: 0;
+    width: 100%;
+    z-index: 1001;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.dropdown {
+    position: relative; /* 确保下拉内容是相对于此定位 */
+}
+
+.dropbtn {
+    width: 100%;
+    box-sizing: border-box; /* 包含边框和内边距在内的宽度计算 */
+}
+
+/* 下拉菜单内容的样式 */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 20rem; /* 可以根据需要调整宽度 */
+    box-shadow: 0 0.8rem 1.6rem 0 rgba(0,0,0,0.2);
+    width: 100%; /* 应与 .dropbtn 宽度一致 */
+    z-index: 1001;
+
+}
+
+/* 下拉菜单内容的链接样式 */
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    text-align: left;
+}
+
+/* 下拉菜单项的鼠标悬停效果 */
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: #4E8397;
+}
+
+/* 当鼠标悬停在下拉菜单按钮上时显示下拉菜单内容 */
+.dropdown:hover .dropdown-content {
+    background-color: #ddd; /* 你想要的悬浮颜色 */
+    display: block;
+    width: 100%; /* 设置为100%以确保与.dropbtn等宽 */
+    box-sizing: border-box; /* 确保边框和内边距包含在宽度内 */
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: 100rem;
+}
+
+/* 媒体查询 - 屏幕宽度小于等于768px时 */
+@media screen and (max-width: 768px) {
+    .navbar {
+        /* 在较窄屏幕上改变导航栏的样式 */
+        flex-direction: column; /* 列表布局 */
+        align-items: flex-start; /* 导航项左对齐 */
+        padding: 0; /* 移除左右内边距 */
+    }
+    .navbar .logo, .navbar a, .navbar .dropdown {
+        flex: none; /* 取消等宽设置 */
+        width: 100%; /* 宽度100%以占据整个宽度 */
+        padding: 1rem 0; /* 增加上下内边距 */
+    }
+    .navbar .logo {
+        padding-left: 1rem; /* 调整logo的左内边距 */
+    }
+    .navbar .dropdown:hover .dropbtn {
+        width: auto; /* 鼠标悬停时宽度自动调整 */
+    }
+    .dropdown .dropbtn {
+        width: 100%;
+    }
+    .dropdown-content a {
+        color: black;
+        text-decoration: none;
+        text-align: center;
+    }
+}

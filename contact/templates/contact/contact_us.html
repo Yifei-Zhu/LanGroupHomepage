@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'contact/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contact-form-container">
+    <h2>Contact Us</h2>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-field">
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+
+        <div class="form-field">
+            <label for="id_subject">How can we help?</label>
+            {{ form.subject }}
+        </div>
+
+        <div class="form-field message-field">
+            <label for="id_message">Message:</label>
+            {{ form.message }}
+        </div>
+
+        <button type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}

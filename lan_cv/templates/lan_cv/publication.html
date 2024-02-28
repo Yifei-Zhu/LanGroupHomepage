@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .center-align {
+        text-align: left; /* 靠左对齐 */
+        margin: 0 auto; /* 水平居中 */
+        max-width: 1000px; /* 控制页面最大宽度，根据需要调整 */
+        font-size: 18px;
+        margin-top: 100px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2, h3 {
+        font-size: 24x;
+    }
+    #book_id{ margin-top:100px}
+</style>
+<!-- 你的数据库页面特有内容 -->
+<div class="center-align">
+    {% comment %} <h1>Papers and Books by Year</h1> {% endcomment %}
+    <h2>Papers:</h2>
+    {% for year, papers in grouped_papers.items %}
+        <h3>{{ year }}</h3>
+        <ul>
+            {% for paper in papers %}
+                <li>{{ paper.title }}, {{paper.author}}, <strong><em>{{ paper.journal_name }}</em></strong>, {{ paper.year}}, {{ paper.volume}}, {{ paper.page}}. <a href="{{ paper.url }}">Link</a></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <h2 id='book_id'>Book Chapters:</h2>
+    {% for year, books in grouped_books.items %}
+        <h3>{{ year }}</h3>
+        <ul>
+            {% for book in books %}
+                <li>{{ book.title }},{{book.author}}, in Book <strong><em>"{{book.book_title}}"</em></strong>, edited by {{book.editor}}, {{ book.publisher }}, {{ book.year }}.</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+<!-- 更多内容... -->
+{% endblock content %}
