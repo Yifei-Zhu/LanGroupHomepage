@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Group List</title>
+</head>
+<body>
+    <h1>Groups</h1>
+    <ul>
+        {% for group in groups %}
+        <li>Group {{ forloop.counter }} - Members:
+            <ul>
+                {% for user in group.users.all %}
+                <li>{{ user.first_name }} {{ user.last_name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

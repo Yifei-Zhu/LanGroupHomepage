@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('contact.urls')),
     path('', include('lan_cv.urls')),
     path('', include('zhuyf_database.urls')),
+    path('', include('duties.urls')),
 ]

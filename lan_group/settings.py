@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*9qqxurw%%@z!h$78f&z2e1b5t2z9_8w#8lhdgx-*9v(7&f#hw
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = ['zhuyf.chat', 'www.zhuyf.chat', '121.41.79.67']
+ALLOWED_HOSTS = ['zhuyf.chat', 'www.zhuyf.chat', '121.41.79.67', '127.0.0.1']
 
 
 # Application definition
@@ -38,10 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'homepage',
     'contact',
     'lan_cv',
     'zhuyf_database',
+    'duties',
+]
+
+CRONJOBS = [
+    ('0 12 * * 0', 'duties.cron.email_scheduled_job'),  # 每周日早上8点执行
 ]
 
 MIDDLEWARE = [
