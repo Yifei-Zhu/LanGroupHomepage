@@ -1,0 +1,105 @@
+/* user_panel.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+.user-info, .home-button {
+    margin-bottom: 20px;
+}
+.action-link, .nav-link {
+    display: block;
+    margin: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em; /* Smaller font size */
+}
+.action-link:hover, .nav-link:hover {
+    text-decoration: underline;
+}
+.home-button a {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.home-button a:hover {
+    background-color: #0056b3;
+}
+/* user_panel.css */
+.user-avatar {
+    width: 160px; /* 或者其它固定宽度 */
+    height: 224px; /* 根据证件照的比例调整高度，确保图片不会失真 */
+    object-fit: cover; /* 保证图片按比例缩放填充，多余部分裁剪 */
+    border-radius: 5px; /* 可选，根据需要调整圆角 */
+    display: block; /* 确保图片和表单在新行 */
+    margin-bottom: 10px; /* 与上传按钮的间距 */
+}
+
+.avatar-upload-form {
+    margin-bottom: 20px; /* 与下面的问候语间距 */
+}
+
+.action-link, .nav-link {
+    display: block;
+    margin: 10px 0;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.action-link:hover, .nav-link:hover {
+    text-decoration: underline;
+}
+
+/* user_panel.css */
+.upload-button, .replace-button {
+    display: inline-block;
+    margin: 5px 0;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+.upload-button:hover, .replace-button:hover {
+    background-color: #0056b3;
+}
+
+/* 隐藏原生的文件输入 */
+#id_avatar {
+    display: none;
+}
+
+.no-avatar {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 5px;
+    color: #666;
+}
+#calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+

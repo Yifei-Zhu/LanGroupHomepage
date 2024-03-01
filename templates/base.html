@@ -33,7 +33,7 @@
 
         {% if user.is_authenticated %}
             <a href="https://yifei-zhu.github.io/LanGroupWiki/">LanGroupWiki</a>
-            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'user_panel' %}">User-Panel</a>
         {% else %}
             <a href="#" onclick="alert('Please log in to access this page.'); return false;">LanGroupWiki</a>
             <a href="{% url 'login' %}">Login</a>

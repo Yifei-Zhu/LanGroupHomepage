@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Panel</title>
+    <link rel="stylesheet" href="{% static 'user_panel/user_panel.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
+    <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="home-button">
+            <a href="{% url 'index' %}">Return to Home</a>
+        </div>
+        <div class="user-info">
+            <form method="post" enctype="multipart/form-data" class="avatar-upload-form">
+                {% csrf_token %}
+                {% if user.userprofile.avatar %}
+                    <img src="{{ user.userprofile.avatar.url }}" alt="User Avatar" class="user-avatar">
+                {% else %}
+                    <div class="no-avatar">No avatar uploaded. Please upload a picture.</div>
+                {% endif %}
+                <label for="id_avatar" class="upload-button">Choose</label>
+                <input type="file" name="avatar" id="id_avatar">
+                <button type="submit" class="replace-button">Upload</button>
+            </form>
+
+            <p>Hello, <strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+            <a href="{% url 'password_change' %}" class="action-link">Change Password</a>
+            <a href="{% url 'logout' %}" class="action-link">Logout</a>
+        </div>
+        <a href="#" class="nav-link">Duty Information</a>
+        <a href="#" class="nav-link">Notifications</a>
+        <a href="#" class="nav-link">Academic Reports</a>
+
+    </div>
+    <div class="main-content">
+        <div id='calendar'></div>
+
+        <!-- 主内容可以根据需要添加 -->
+    </div>
+</body>
+
+<script>
+    var calendar; // 在全局作用域声明变量
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            customButtons: {
+                addEventButton: {
+                    text: 'Add Event', // 按钮显示的文本
+                    click: function() {
+                        window.location.href = '{% url "add_event" %}'; // 跳转到添加事件的URL
+                    }
+                }
+            },
+            headerToolbar: {
+                left: 'prev,next today addEventButton', // 将addEventButton添加到日历的头部工具栏
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: '{% url "events" %}',
+            eventContent: function(arg) {
+                var element = document.createElement('div');
+                var title = document.createElement('div');
+                title.innerText = arg.event.title;
+    
+                var time = document.createElement('div');
+                time.innerText = new Date(arg.event.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ' - ' + new Date(arg.event.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    
+                var createdBy = document.createElement('div');
+                createdBy.innerText = 'Added by: ' + arg.event.extendedProps.created_by;
+
+                var participants = document.createElement('div');
+                participants.innerText = 'Participants: ' + arg.event.extendedProps.participants;
+
+                element.appendChild(title);
+                element.appendChild(time);
+                element.appendChild(createdBy);
+                element.appendChild(participants);
+
+
+                if (arg.event.extendedProps.is_deletable) {
+                    var deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.onclick = function() {
+                        deleteEvent(arg.event.id);
+                    };
+                    element.appendChild(deleteButton);
+                }
+    
+                return { domNodes: [element] };
+            },
+        });
+        calendar.render();
+    });
+
+    function deleteEvent(eventId) {
+        $.ajax({
+            type: "POST",
+            url: "/delete_event/" + eventId + "/",
+            data: {
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function(response) {
+                if(response.success) {
+                    alert("Event deleted successfully!");
+                    calendar.refetchEvents();
+                }
+            },
+            error: function(xhr, errmsg, err) {
+                alert("Error deleting event. Please try again.");
+            },
+        });
+    }
+</script>
+
+</html>

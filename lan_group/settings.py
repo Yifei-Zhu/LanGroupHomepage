@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'lan_cv',
     'zhuyf_database',
     'duties',
+    'user_panel',
 ]
 
 CRONJOBS = [
@@ -82,10 +83,14 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+
 import os
 # 示例
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/var/www/lan_group/staticfiles/')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 WSGI_APPLICATION = 'lan_group.wsgi.application'
