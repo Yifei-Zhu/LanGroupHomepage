@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Panel</title>
-    <link rel="stylesheet" href="{% static 'user_panel/user_panel.css' %}">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Panel</title>
+        <link rel="stylesheet" href="{% static 'user_panel/user_panel.css' %}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            .participants-list {
+                white-space: normal;
+                word-wrap: break-word;
+                max-width: 200px;
+                overflow-y: auto;
+                max-height: 100px;
+            }
+        </style>
 
-    <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
-    <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
-
-</head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
+        <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
+    </head>
 <body>
     <div class="sidebar">
         <div class="home-button">
@@ -41,8 +49,6 @@
     </div>
     <div class="main-content">
         <div id='calendar'></div>
-
-        <!-- 主内容可以根据需要添加 -->
     </div>
 </body>
 
@@ -71,18 +77,23 @@
                 var element = document.createElement('div');
                 var title = document.createElement('div');
                 title.innerText = arg.event.title;
-    
+
                 var time = document.createElement('div');
                 time.innerText = new Date(arg.event.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ' - ' + new Date(arg.event.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    
+
                 var createdBy = document.createElement('div');
                 createdBy.innerText = 'Added by: ' + arg.event.extendedProps.created_by;
 
                 var participants = document.createElement('div');
                 participants.innerText = 'Participants: ' + arg.event.extendedProps.participants;
+                participants.className = 'participants-list';  // 添加类名
+
+                var location = document.createElement('div');
+                location.innerText = 'Location: ' + arg.event.extendedProps.location;
 
                 element.appendChild(title);
                 element.appendChild(time);
+                element.appendChild(location);
                 element.appendChild(createdBy);
                 element.appendChild(participants);
 
@@ -95,7 +106,7 @@
                     };
                     element.appendChild(deleteButton);
                 }
-    
+
                 return { domNodes: [element] };
             },
         });

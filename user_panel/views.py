@@ -23,8 +23,9 @@ def events(request):
         'title': event.title,
         'start': event.start_time.strftime("%Y-%m-%dT%H:%M:%S"),
         'end': event.end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+        'location': event.location,
         'created_by': event.created_by.first_name+' '+event.created_by.last_name,  # 使用 first_name
-        'participants': ', '.join([user.first_name for user in event.participants.all()]),  # 使用参与者的 first_name
+        'participants': ', '.join([f'{user.first_name} {user.last_name}' for user in event.participants.all()]),
         'is_deletable': request.user.is_superuser or request.user == event.created_by,
     } for event in events]
     return JsonResponse(event_list, safe=False)
@@ -56,6 +57,7 @@ def get_events(request):
             'title': event.title,
             'start': event.start_time.strftime('%Y-%m-%dT%H:%M:%S'),
             'end': event.end_time.strftime('%Y-%m-%dT%H:%M:%S'),
+            'location': event.location,
             'canDelete': request.user.is_superuser or event.created_by == request.user,  # 示例权限检查
         })
     return JsonResponse(event_list, safe=False)
@@ -82,7 +84,7 @@ def add_event(request):
             end_time_formatted = event.end_time.strftime("%Y-%m-%d %H:%M")
 
             subject = 'You are invited to an event'
-            message = f"Hi, you have been invited by {event.created_by.first_name} {event.created_by.last_name} to participate in the event: {event.title} from {start_time_formatted} to {end_time_formatted} with {participants_names}."
+            message = f"Hi, you have been invited by {event.created_by.first_name} {event.created_by.last_name} to participate in the event: {event.title} from {start_time_formatted} to {end_time_formatted} with {participants_names} at {event.location}."
 
             from_email = settings.EMAIL_HOST_USER
             recipient_list = [user.email for user in event.participants.all() if user.email]
