@@ -14,7 +14,7 @@ def user_panel_view(request):
         form = UserProfileForm(instance=request.user.userprofile)
     return render(request, 'registration/user_panel.html', {'form': form})
 
-
+'''
 @login_required
 def events(request):
     events = Event.objects.all()
@@ -29,7 +29,28 @@ def events(request):
         'is_deletable': request.user.is_superuser or request.user == event.created_by,
     } for event in events]
     return JsonResponse(event_list, safe=False)
-
+'''
+@login_required
+def events(request):
+    events = Event.objects.all()
+    event_list = []
+    for event in events:
+        participants_sorted = event.participants.all().order_by('last_name')
+        participants_names = ', '.join([user.get_full_name() for user in participants_sorted])
+        
+        event_data = {
+            'id': event.id,
+            'title': event.title,
+            'start': event.start_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            'end': event.end_time.strftime("%Y-%m-%dT%H:%M:%S"),
+            'location': event.location,
+            'created_by':  event.created_by.first_name+' '+event.created_by.last_name,
+            'participants': participants_names,
+            'is_deletable': request.user.is_superuser or request.user == event.created_by,
+        }
+        event_list.append(event_data)
+    
+    return JsonResponse(event_list, safe=False)
 
 from django.shortcuts import get_object_or_404, redirect
 from .models import Event
