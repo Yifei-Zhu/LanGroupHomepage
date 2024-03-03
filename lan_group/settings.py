@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('0 17 * * 0', 'duties.cron.email_scheduled_job'),  # 每周日17点执行
+    ('0 17 * * 1', 'duties.cron.email_scheduled_job'),  # 每周一17点执行
 ]
 
 MIDDLEWARE = [

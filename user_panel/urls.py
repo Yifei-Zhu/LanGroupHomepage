@@ -24,10 +24,11 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='registration/custom_login.html'), name='login'),
 
     path('user_panel/', views.user_panel_view, name='user_panel'),
-
-    # path('login/', LoginView.as_view(next_page='/'), name='login'),
+    
+    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # # path('login/', LoginView.as_view(next_page='/'), name='login'),
     path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
 
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
@@ -42,5 +43,8 @@ urlpatterns = [
     path('events/', views.events, name='events'),
     path('delete_event/<int:event_id>/', views.delete_event, name='delete_event'),
 
+    path('calendar/', auth_views.LoginView.as_view(template_name='registration/user_panel.html'), name='calendar'),
+
 ]
+
 

@@ -36,6 +36,11 @@
             <input type="text" class="form-control" id="id_location" name="location" placeholder="Location">
         </div>
         <div class="mb-3">
+            <input type="checkbox" class="form-check-input" id="id_is_public" name="is_public">
+            <label for="id_is_public" class="form-check-label">Public Event</label>
+        </div>
+        
+        <div class="mb-3" id="participants_wrapper">
             <label for="id_participants" class="form-label">*Participants:</label>
             {% for checkbox in form.participants %}
                 <div class="form-check">
@@ -63,6 +68,30 @@
     flatpickr("#id_end_time", {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 获取复选框和参与者字段的包装器
+        var isPublicCheckbox = document.getElementById("id_is_public");
+        var participantsWrapper = document.getElementById("participants_wrapper");
+
+        // 定义一个函数来根据公共事件复选框的状态启用或禁用参与者选择
+        function toggleParticipants(enabled) {
+            // 根据enabled参数启用或禁用所有输入元素
+            var inputs = participantsWrapper.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].disabled = !enabled;
+            }
+        }
+
+        // 初始化参与者字段的状态
+        toggleParticipants(isPublicCheckbox.checked);
+
+        // 为公共事件复选框添加事件监听器，当状态改变时更新参与者字段
+        isPublicCheckbox.addEventListener("change", function() {
+            toggleParticipants(this.checked);
+        });
     });
 </script>
 </body>

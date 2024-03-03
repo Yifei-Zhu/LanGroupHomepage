@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = 'Send a password reset email to a specific user.'
 
     def handle(self, *args, **options):
-        user = User.objects.get(username='lujz')
+        user = User.objects.get(username='limg')
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
         reset_url = f"http://121.41.79.67:8000{reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})}"

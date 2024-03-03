@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Panel</title>
+        <link rel="stylesheet" href="{% static 'user_panel.css' %}">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
+        <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script>
+    </head>
+<body>
+    <div class="sidebar">
+        <div class="home-button">
+            <a href="{% url 'index' %}">Return to Home</a>
+        </div>
+        <div class="user-info">
+            <form method="post" enctype="multipart/form-data" class="avatar-upload-form">
+                {% csrf_token %}
+                {% if user.userprofile.avatar %}
+                    <img src="{{ user.userprofile.avatar.url }}" alt="User Avatar" class="user-avatar">
+                {% else %}
+                    <div class="no-avatar">No avatar uploaded. Please upload a picture.</div>
+                {% endif %}
+                <label for="id_avatar" class="upload-button">Choose</label>
+                <input type="file" name="avatar" id="id_avatar">
+                <button type="submit" class="replace-button">Upload</button>
+            </form>
+
+            <p>Hello, <strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+            <a href="{% url 'password_change' %}" class="action-link">Change Password</a>
+            <a href="{% url 'logout' %}" class="action-link">Logout</a>
+        </div>
+        <a href="{% url 'calendar' %}" class="nav-link">Calendar</a>
+        <a href="{% url 'show_groups' %}" class="nav-link">Duty Information</a>
+        <a href="#" class="nav-link">Notifications</a>
+    </div>
+
+{% block content %}
+{% endblock content %}
+
+
+{% block extra_js %}
+{% endblock %}
+
+
+

@@ -25,3 +25,5 @@ class Event(models.Model):
     location = models.CharField(max_length=255, blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_events')
     participants = models.ManyToManyField(User, related_name='participating_events', blank=True)
+    is_public = models.BooleanField(default=True)
+

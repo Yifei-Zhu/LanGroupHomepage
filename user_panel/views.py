@@ -30,14 +30,19 @@ def events(request):
     } for event in events]
     return JsonResponse(event_list, safe=False)
 '''
+from django.db.models import Q
+
 @login_required
 def events(request):
     events = Event.objects.all()
+    events = Event.objects.filter(
+        Q(is_public=True) | (Q(is_public=False) & Q(created_by=request.user))
+    ).distinct()
     event_list = []
     for event in events:
         participants_sorted = event.participants.all().order_by('last_name')
         participants_names = ', '.join([user.get_full_name() for user in participants_sorted])
-        
+
         event_data = {
             'id': event.id,
             'title': event.title,
@@ -47,10 +52,12 @@ def events(request):
             'created_by':  event.created_by.first_name+' '+event.created_by.last_name,
             'participants': participants_names,
             'is_deletable': request.user.is_superuser or request.user == event.created_by,
+            'is_public':event.is_public,
         }
         event_list.append(event_data)
     
     return JsonResponse(event_list, safe=False)
+
 
 from django.shortcuts import get_object_or_404, redirect
 from .models import Event
@@ -69,24 +76,10 @@ def delete_event(request, event_id):
     else:
         return JsonResponse({"error": "Only POST requests are allowed."}, status=405)
 
-def get_events(request):
-    events = Event.objects.all()
-    event_list = []
-    for event in events:
-        event_list.append({
-            'id': event.id,
-            'title': event.title,
-            'start': event.start_time.strftime('%Y-%m-%dT%H:%M:%S'),
-            'end': event.end_time.strftime('%Y-%m-%dT%H:%M:%S'),
-            'location': event.location,
-            'canDelete': request.user.is_superuser or event.created_by == request.user,  # 示例权限检查
-        })
-    return JsonResponse(event_list, safe=False)
+
 
 
 from .forms import EventForm
-from django.contrib import messages
-
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -118,3 +111,4 @@ def add_event(request):
     else:
         form = EventForm()
     return render(request, 'registration/add_event.html', {'form': form})
+

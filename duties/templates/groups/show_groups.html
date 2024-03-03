@@ -1,20 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Group List</title>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .group-card {
+            margin-bottom: 20px;
+        }
+        .group-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+        }
+        .group-body {
+            padding: 10px;
+        }
+        .member-item {
+            background-color: #f8f9fa;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Groups</h1>
-    <ul>
-        {% for group in groups %}
-        <li>Group {{ forloop.counter }} - Members:
-            <ul>
-                {% for user in group.users.all %}
-                <li>{{ user.first_name }} {{ user.last_name }}</li>
-                {% endfor %}
-            </ul>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-4">
+        <div class="mb-4">
+            <a href="{% url 'calendar' %}" class="btn btn-primary">Return to User Panel</a>
+        </div>
+        <h1 class="text-center mb-4">Groups</h1>
+        <div class="row">
+            {% for group in groups %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card group-card">
+                    <div class="group-header">
+                        Group {{ forloop.counter }}
+                    </div>
+                    <div class="card-body group-body">
+                        <h5 class="card-title">Members:</h5>
+                        <ul class="list-unstyled">
+                            {% for user in group.sorted_users %}
+                            <li class="member-item">{{ user.first_name }} {{ user.last_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+
