@@ -4,19 +4,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const descriptionInput = document.getElementById('new-todo-description');
     const todoList = document.getElementById('todo-list');
 
-    // 从服务器加载ToDo项
+    // 加载待办事项时调用 makeItemsDraggable 和 updateTodoOrder
     function loadTodos() {
         fetch('/todos/')
         .then(response => response.json())
         .then(data => {
             data.forEach(todo => addTodoToDOM(todo));
-            makeItemsDraggable(); // 调用此函数以使加载的待办事项可拖拽
+            makeItemsDraggable();
         });
     }
 
     // 添加新ToDo项到DOM
     function addTodoToDOM(todo) {
         const li = document.createElement('li');
+        li.dataset.id = todo.id; // 设置待办事项的ID作为data-id属性
         li.innerHTML = `
             <div class="todo-item">
                 <span class="${todo.completed ? 'completed' : ''}">${todo.title}: ${todo.description}</span>
@@ -55,18 +56,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // 删除ToDo项
-    function deleteTodo(todoId) {
+     function deleteTodo(todoId) {
         fetch(`/todo/${todoId}/`, {
             method: 'DELETE',
-    
             headers: {
                 'X-CSRFToken': getCookie('csrftoken') // 获取CSRF令牌
             }
         })
         .then(() => {
             document.querySelector(`button[data-id="${todoId}"]`).parentElement.parentElement.remove();
+            updateTodoOrder(); // 删除待办事项后更新顺序
         });
     }
+
+
 
     // 辅助函数：获取Cookie值
     function getCookie(name) {
@@ -83,6 +86,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return cookieValue;
     }
+
+    function updateTodoOrder() {
+        const todos = Array.from(document.querySelectorAll('#todo-list li')).map((item, index) => {
+            return {
+                id: item.dataset.id, // 从data-id属性中获取待办事项的ID
+                order: index
+            };
+        });
+    
+        fetch('/update_todo_order/', { // 确保这个URL是正确的
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') // 确保这个函数能正确获取CSRF令牌
+            },
+            body: JSON.stringify({todos: todos})
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Order updated successfully');
+            } else {
+                console.error('Failed to update order');
+            }
+        });
+    }
+    
     function makeItemsDraggable() {
         const items = document.querySelectorAll('li'); // 获取所有待办事项
         items.forEach(item => {
@@ -97,7 +126,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(() => (this.style.opacity = "1"), 0); // 恢复透明度
                 draggedItem = null; // 清除记录
                 items.forEach(item => item.classList.remove('drag-over')); // 清除所有目标高亮样式
-                saveTodos(); // 拖拽结束后保存新的顺序
+                // 调用 updateTodoOrder 来更新数据库中的顺序
+                updateTodoOrder();
             });
     
             item.addEventListener('dragover', function(e) {
@@ -119,13 +149,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     let allItems = Array.from(document.querySelectorAll('li'));
                     let draggedIndex = allItems.indexOf(draggedItem);
                     let targetIndex = allItems.indexOf(this);
-    
+                
                     if (draggedIndex < targetIndex) {
                         this.parentNode.insertBefore(draggedItem, this.nextSibling); // 放置在目标项之后
                     } else {
                         this.parentNode.insertBefore(draggedItem, this); // 放置在目标项之前
                     }
-    
+                
                     // 由于元素位置发生变化，需要重新调用 makeItemsDraggable 来更新事件监听
                     makeItemsDraggable();
                 }

@@ -163,3 +163,19 @@ def delete_todo(request, todo_id):
         return JsonResponse({'message': 'Todo deleted successfully'}, status=204)
     except TodoItem.DoesNotExist:
         return JsonResponse({'error': 'Todo not found'}, status=404)
+
+from django.views.decorators.csrf import csrf_exempt
+
+
+@require_POST
+def update_todo_order(request):
+    data = json.loads(request.body)
+    todos = data.get('todos', [])
+
+    # 更新待办事项的顺序
+    for todo_data in todos:
+        todo_id = todo_data.get('id')
+        order = todo_data.get('order')
+        TodoItem.objects.filter(id=todo_id).update(order=order)
+
+    return JsonResponse({'message': 'Order updated successfully'})

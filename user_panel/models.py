@@ -31,3 +31,7 @@ class TodoItem(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='todo_items', null=True, blank=True)
+    order = models.IntegerField(default=0)  # 新增字段来存储排序顺序
+    
+    class Meta:
+        ordering = ['order']  
