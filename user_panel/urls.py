@@ -45,6 +45,14 @@ urlpatterns = [
 
     path('calendar/', auth_views.LoginView.as_view(template_name='registration/user_panel.html'), name='calendar'),
 
+    path('todolist/', auth_views.LoginView.as_view(template_name='registration/todo_list.html'), name='todolist'),
+
+    path('event/<int:event_id>/status/', views.update_event_status, name='update_event_status'),
+    
+    path('todos/', views.load_todos, name='load_todos'),
+    path('todo/', views.add_todo, name='add_todo'),
+    path('todo/<int:todo_id>/', views.delete_todo, name='delete_todo'),
+
 ]
 
 

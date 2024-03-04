@@ -1,0 +1,168 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaeaea; /* 更素雅的背景色 */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.todo-container {
+    background: #ffffff; /* 纯白背景 */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* 更深的文字颜色 */
+}
+
+#new-todo-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#new-todo-title, #new-todo-description {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc; /* 细微的边框 */
+    border-radius: 10px;
+    background-color: #fafafa; /* 轻微的背景色 */
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #333; /* 按钮背景颜色为深灰色 */
+    color: #fff; /* 文字颜色为白色 */
+    padding: 10px 20px; /* 内边距 */
+    border: none; /* 去除边框 */
+    border-radius: 5px; /* 边框圆角 */
+    cursor: pointer; /* 鼠标悬停时的指针样式 */
+    font-size: 16px; /* 字体大小 */
+    font-weight: bold; /* 字体加粗 */
+    transition: background-color 0.3s, transform 0.2s; /* 过渡效果 */
+    outline: none; /* 去除焦点轮廓 */
+}
+
+.submit-btn:hover {
+    background-color: #555; /* 鼠标悬停时的背景颜色变为稍微亮一点的灰色 */
+    transform: translateY(-2px); /* 轻微上移 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果以增加深度感 */
+}
+
+.submit-btn:active {
+    background-color: #222; /* 按下时的背景颜色变为更深的灰色 */
+    transform: translateY(1px); /* 按下时轻微下移 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 调整阴影效果 */
+}
+
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+#todo-list li {
+    padding: 10px;
+    background: #f9f9f9; /* 项的背景色 */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#todo-list li:hover {
+    background: #f0f0f0; /* 悬停效果 */
+}
+.home-button {
+    margin-bottom: 20px; /* 给按钮和表单之间留出一些空间 */
+}
+
+.home-button a {
+    display: inline-block; /* 或者使用 'block'，取决于你的具体布局需求 */
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.home-button a:hover {
+    background-color: #0056b3;
+}
+
+#todo-list li {
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#todo-list li span {
+    display: block; /* 或 inline-block，取决于你的布局需求 */
+    word-wrap: break-word; /* 允许长单词或URL在边界内换行 */
+    max-width: 90%; /* 根据需要调整最大宽度 */
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.todo-item span {
+    margin-left: 10px;
+    flex-grow: 1; /* 使描述占据多余空间 */
+}
+
+.delete-todo {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* 确保按钮不紧贴在任务描述后面 */
+}
+
+.delete-todo:hover {
+    background-color: #ff3333;
+}
+
+#todo-list li {
+    cursor: move; /* 更改光标，提醒用户这个项目可以移动 */
+}
+
+#todo-list li:hover {
+    background-color: #f0f0f0;
+}
+
+#todo-list li.dragging {
+    opacity: 0.5; /* 拖拽时，使项目半透明 */
+}
+
+/* 拖动时的项目样式 */
+.dragging {
+    opacity: 0.5;
+}
+
+/* 拖动目标的高亮样式 */
+.drag-over {
+    background-color: #f0f0f0; /* 或其他更明显的颜色 */
+    border: 2px dashed #000; /* 添加虚线边框作为放置指示 */
+}
+
+/* 平滑过渡效果 */
+li {
+    transition: background-color 0.3s, border 0.3s;
+}

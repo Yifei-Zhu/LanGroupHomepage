@@ -53,6 +53,7 @@ def events(request):
             'participants': participants_names,
             'is_deletable': request.user.is_superuser or request.user == event.created_by,
             'is_public':event.is_public,
+            'is_completed': event.is_completed,
         }
         event_list.append(event_data)
     
@@ -71,13 +72,12 @@ def delete_event(request, event_id):
     if not (request.user.is_superuser or event.created_by == request.user):
         return HttpResponseForbidden("You are not allowed to delete this event.")
     if request.method == 'POST':
+        TodoItem.objects.filter(event=event).delete()
+
         event.delete()
         return JsonResponse({"success": True})
     else:
         return JsonResponse({"error": "Only POST requests are allowed."}, status=405)
-
-
-
 
 from .forms import EventForm
 from django.core.mail import send_mail
@@ -97,6 +97,9 @@ def add_event(request):
             start_time_formatted = event.start_time.strftime("%Y-%m-%d %H:%M")
             end_time_formatted = event.end_time.strftime("%Y-%m-%d %H:%M")
 
+            todo_description = f"From {start_time_formatted} to {end_time_formatted}, Location: {event.location}, Participants: {participants_names}"
+            TodoItem.objects.create(title=f"Event: {event.title}", description=todo_description,event=event)
+
             subject = 'You are invited to an event'
             message = f"Hi, you have been invited by {event.created_by.first_name} {event.created_by.last_name} to participate in the event: {event.title} from {start_time_formatted} to {end_time_formatted} with {participants_names} at {event.location}."
 
@@ -112,3 +115,51 @@ def add_event(request):
         form = EventForm()
     return render(request, 'registration/add_event.html', {'form': form})
 
+from django.views.decorators.http import require_POST
+
+@require_POST
+def update_event_status(request, event_id):
+    # 假设你已经有了验证和权限检查
+    event = Event.objects.get(id=event_id)
+    event.is_completed = not event.is_completed  # 切换状态
+    event.save()
+    return JsonResponse({"success": True, "is_completed": event.is_completed})
+
+
+from .models import TodoItem, Event
+
+from django.views.decorators.http import require_http_methods
+import json
+@require_http_methods(["GET"])
+def load_todos(request):
+    todos = TodoItem.objects.all().values('id', 'title', 'description', 'created_at')
+    todos_list = list(todos)
+    return JsonResponse(todos_list, safe=False)
+
+@require_http_methods(["POST"])
+def add_todo(request):
+    try:
+        data = json.loads(request.body)
+        todo = TodoItem.objects.create(title=data['title'], description=data['description'])
+        return JsonResponse({'id': todo.id, 'title': todo.title, 'description': todo.description, 'created_at': todo.created_at}, status=201)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+
+from .models import TodoItem
+
+@login_required
+@require_http_methods(["DELETE"])
+def delete_todo(request, todo_id):
+    try:
+        todo = TodoItem.objects.get(id=todo_id)
+        # 检查这个TodoItem是否关联了一个Event，并且当前用户是否有权限删除这个Event
+        if todo.event and (request.user.is_superuser or todo.event.created_by == request.user):
+            todo.event.delete()  # 如果有权限，删除这个Event
+        elif todo.event:
+            # 如果没有权限删除Event，仅删除TodoItem，可以在这里记录日志或通知用户
+            pass
+        todo.delete()  # 删除TodoItem
+        return JsonResponse({'message': 'Todo deleted successfully'}, status=204)
+    except TodoItem.DoesNotExist:
+        return JsonResponse({'error': 'Todo not found'}, status=404)

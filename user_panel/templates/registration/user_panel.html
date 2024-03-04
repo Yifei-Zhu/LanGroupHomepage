@@ -8,6 +8,16 @@
     <div class="main-content">
         <div id='calendar'></div>
     </div>
+<style>
+    .participants-list {
+        white-space: normal;
+        word-wrap: break-word;
+        max-width: 200px;
+        overflow-y: auto; /* 超出部分显示滚动条 */
+        max-height: 100px; /* 设置一个最大高度 */
+    }
+    
+</style>
 {% endblock content %}
 
 {% block extra_js %}
@@ -34,9 +44,12 @@
             events: '{% url "events" %}',
             eventContent: function(arg) {
                 var element = document.createElement('div');
+                if (arg.event.extendedProps.is_completed) { 
+                    element.style.textDecoration = "line-through";
+                }
                 var title = document.createElement('div');
                 title.innerText = arg.event.title;
-            
+
                 // 标识事件是公共还是私有
                 var eventType = document.createElement('div');
                 eventType.innerText = arg.event.extendedProps.is_public ? 'Public' : 'Private';
@@ -47,7 +60,7 @@
                 } else {
                     eventType.style.color = 'red';
                 }
-            
+
                 var time = document.createElement('div');
                 time.innerText = new Date(arg.event.start).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + ' - ' + new Date(arg.event.end).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
@@ -57,12 +70,24 @@
                 var location = document.createElement('div');
                 location.innerText = 'Location: ' + arg.event.extendedProps.location;
 
+                var completeButton = document.createElement('button');
+                completeButton.innerText = 'Complete';
+
+                if (arg.event.extendedProps.is_completed) {
+                    completeButton.innerText = 'Revoke';
+                }
+                completeButton.setAttribute('data-id', arg.event.id); // 使用事件ID作为数据属性
+                completeButton.onclick = function() {
+                    markEventComplete(arg.event.id);
+                };
                 // 先添加事件类型标识
                 element.appendChild(eventType);
                 element.appendChild(title);
                 element.appendChild(time);
                 element.appendChild(location);
                 element.appendChild(createdBy);
+
+
 
                 // 仅当事件为公共事件时，才显示参与者
                 if (arg.event.extendedProps.is_public) {
@@ -71,7 +96,7 @@
                     participants.className = 'participants-list';  // 添加类名
                     element.appendChild(participants);
                 }
-
+                element.appendChild(completeButton);
                 if (arg.event.extendedProps.is_deletable) {
                     var deleteButton = document.createElement('button');
                     deleteButton.innerText = 'Delete';
@@ -80,7 +105,7 @@
                     };
                     element.appendChild(deleteButton);
                 }
-
+                
                 return { domNodes: [element] };
             },
 
@@ -97,12 +122,30 @@
             },
             success: function(response) {
                 if(response.success) {
-                    alert("Event deleted successfully!");
+                    {% comment %} alert("Event deleted successfully!"); {% endcomment %}
                     calendar.refetchEvents();
                 }
             },
             error: function(xhr, errmsg, err) {
                 alert("Error deleting event. Please try again.");
+            },
+        });
+    }
+    function markEventComplete(eventId) {
+        $.ajax({
+            type: "POST",
+            url: "/event/" + eventId + "/status/",
+            data: {
+                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val(),
+            },
+            success: function(response) {
+                if (response.success) {
+                    {% comment %} alert("Event status updated!"); {% endcomment %}
+                    calendar.refetchEvents(); // 重新获取事件数据，以反映更新的完成状态
+                }
+            },
+            error: function(xhr, errmsg, err) {
+                alert("Error updating event status. Please try again.");
             },
         });
     }

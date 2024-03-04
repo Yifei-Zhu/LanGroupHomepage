@@ -25,3 +25,8 @@ class EventForm(forms.ModelForm):
             'participants': forms.CheckboxSelectMultiple,
         }
 
+from .models import TodoItem
+class TodoItemForm(forms.ModelForm):
+    class Meta:
+        model = TodoItem
+        fields = ['title', 'description']
