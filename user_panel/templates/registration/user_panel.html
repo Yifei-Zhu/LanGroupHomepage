@@ -1,26 +1,60 @@
-{% extends 'user_panel_base.html' %}
+<!DOCTYPE html>
 {% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Panel</title>
+        <link rel="stylesheet" href="{% static 'user_panel.css' %}">
+        <style>
+            .participants-list {
+                white-space: normal;
+                word-wrap: break-word;
+                max-width: 200px;
+                overflow-y: auto; /* 超出部分显示滚动条 */
+                max-height: 100px; /* 设置一个最大高度 */
+            }
+        </style>
 
-{% block extra_css %}
-{% endblock %}
+        <link rel="stylesheet" href="{% static 'main.min.css' %}">
 
-{% block content %}
+        {% comment %} <link href='https://unpkg.com/fullcalendar@5/main.min.css' rel='stylesheet' />
+        <script src='https://unpkg.com/fullcalendar@5/main.min.js'></script> {% endcomment %}
+
+    </head>
+<body>
+    <div class="sidebar">
+        <div class="home-button">
+            <a href="{% url 'index' %}">Return to Home</a>
+        </div>
+        <div class="user-info">
+            <form method="post" enctype="multipart/form-data" class="avatar-upload-form">
+                {% csrf_token %}
+                {% if user.userprofile.avatar %}
+                    <img src="{{ user.userprofile.avatar.url }}" alt="User Avatar" class="user-avatar">
+                {% else %}
+                    <div class="no-avatar">No avatar uploaded. Please upload a picture.</div>
+                {% endif %}
+                <label for="id_avatar" class="upload-button">Choose</label>
+                <input type="file" name="avatar" id="id_avatar">
+                <button type="submit" class="replace-button">Upload</button>
+            </form>
+
+            <p>Hello, <strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+            <a href="{% url 'password_change' %}" class="action-link">Change Password</a>
+            <a href="{% url 'logout' %}" class="action-link">Logout</a>
+        </div>
+        <a href="{% url 'calendar' %}" class="nav-link">Calendar</a>
+        <a href="{% url 'todolist' %}" class="nav-link">ToDoList</a>
+        <a href="{% url 'show_groups' %}" class="nav-link">Duty Information</a>
+        <a href="#" class="nav-link">Notifications</a>
+    </div>
     <div class="main-content">
         <div id='calendar'></div>
     </div>
-<style>
-    .participants-list {
-        white-space: normal;
-        word-wrap: break-word;
-        max-width: 200px;
-        overflow-y: auto; /* 超出部分显示滚动条 */
-        max-height: 100px; /* 设置一个最大高度 */
-    }
-    
-</style>
-{% endblock content %}
 
-{% block extra_js %}
+<script src="{% static 'js/main.min.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
 <script>
     var calendar; // 在全局作用域声明变量
 
@@ -105,7 +139,7 @@
                     };
                     element.appendChild(deleteButton);
                 }
-                
+
                 return { domNodes: [element] };
             },
 
@@ -150,6 +184,8 @@
         });
     }
 </script>
-{% endblock %}
+
+</body>
+</html>
 
 
