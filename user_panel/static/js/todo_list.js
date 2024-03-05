@@ -164,41 +164,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 // 调用 updateTodoOrder 来更新数据库中的顺序
                 updateTodoOrder();
             });
-    
+
             item.addEventListener('dragover', function(e) {
                 e.preventDefault(); // 必须阻止默认行为来允许放置
             });
-    
+
             item.addEventListener('dragenter', function(e) {
                 e.preventDefault();
                 this.classList.add('drag-over'); // 应用目标高亮样式
             });
-    
+
             item.addEventListener('dragleave', function(e) {
                 this.classList.remove('drag-over'); // 移除目标高亮样式
             });
-    
+
             item.addEventListener('drop', function(e) {
                 this.classList.remove('drag-over'); // 移除目标高亮样式
                 if (this !== draggedItem) {
                     let allItems = Array.from(document.querySelectorAll('li'));
                     let draggedIndex = allItems.indexOf(draggedItem);
                     let targetIndex = allItems.indexOf(this);
-                
+
                     if (draggedIndex < targetIndex) {
                         this.parentNode.insertBefore(draggedItem, this.nextSibling); // 放置在目标项之后
                     } else {
                         this.parentNode.insertBefore(draggedItem, this); // 放置在目标项之前
                     }
-                
+
                     // 由于元素位置发生变化，需要重新调用 makeItemsDraggable 来更新事件监听
                     makeItemsDraggable();
                 }
             });
         });
     }
-    
-    
+
+
     loadTodos(); // 页面加载时从服务器加载ToDo项
 });
 

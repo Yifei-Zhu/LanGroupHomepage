@@ -26,6 +26,8 @@ class Event(models.Model):
     is_public = models.BooleanField(default=True)
     is_completed = models.BooleanField(default=False)
 
+
+
 class TodoItem(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -35,4 +37,21 @@ class TodoItem(models.Model):
     completed = models.BooleanField(default=False)  # 添加完成状态字段
 
     class Meta:
-        ordering = ['order']  
+        ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.event:
+            # 检查是否所有TodoItem都已完成
+            all_completed = self.event.todo_items.all().values_list('completed', flat=True)
+            self.event.is_completed = all(all_completed)
+            self.event.save()
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=Event)
+def sync_event_completion_status(sender, instance, **kwargs):
+    TodoItem.objects.filter(event=instance).update(completed=instance.is_completed)
+

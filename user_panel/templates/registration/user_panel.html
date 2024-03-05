@@ -6,7 +6,7 @@
         <title>User Panel</title>
         <link rel="stylesheet" href="{% static 'user_panel.css' %}">
         <style>
-            .participants-list {
+            .participants-list, .location-list {
                 white-space: normal;
                 word-wrap: break-word;
                 max-width: 200px;
@@ -103,6 +103,7 @@
 
                 var location = document.createElement('div');
                 location.innerText = 'Location: ' + arg.event.extendedProps.location;
+                location.className = 'location-list';  // 添加类名
 
                 var completeButton = document.createElement('button');
                 completeButton.innerText = 'Complete';

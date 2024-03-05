@@ -6117,3 +6117,191 @@ Not Found: /accounts/login/
 [05/Mar/2024 12:31:10] "POST /toggle-todo-completed/18/ HTTP/1.1" 200 58
 [05/Mar/2024 12:31:11] "POST /toggle-todo-completed/18/ HTTP/1.1" 200 58
 [05/Mar/2024 12:31:11] "POST /toggle-todo-completed/18/ HTTP/1.1" 200 58
+[05/Mar/2024 12:43:28] "GET /calendar/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:43:31] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 2
+[05/Mar/2024 12:43:35] "GET /add_event/ HTTP/1.1" 200 10087
+[05/Mar/2024 12:43:45] "POST /add_event/ HTTP/1.1" 302 0
+[05/Mar/2024 12:43:45] "GET /user_panel/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:43:48] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 218
+/root/lan_group/user_panel/models.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2024 - 10:19:51
+Django version 4.2.9, using settings 'lan_group.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+False
+True
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+False
+True
+True
+False
+Watching for file changes with StatReloader
+[05/Mar/2024 12:50:30] "GET /user_panel/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:50:33] "GET /static/main.min.css HTTP/1.1" 304 0
+[05/Mar/2024 12:50:33] "GET /static/js/jquery.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:50:33] "GET /static/js/main.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:50:33] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 218
+[05/Mar/2024 12:50:35] "POST /event/38/status/ HTTP/1.1" 200 39
+[05/Mar/2024 12:50:35] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 217
+[05/Mar/2024 12:50:37] "GET /todolist/ HTTP/1.1" 200 863
+[05/Mar/2024 12:50:40] "GET /static/js/Sortable.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:50:40] "GET /static/js/todo_list.js HTTP/1.1" 200 8016
+[05/Mar/2024 12:50:40] "GET /todos/ HTTP/1.1" 200 295
+[05/Mar/2024 12:50:45] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:50:45] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:50:47] "POST /toggle-todo-completed/19/ HTTP/1.1" 200 58
+[05/Mar/2024 12:50:47] "GET /calendar/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:50:50] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 218
+[05/Mar/2024 12:50:53] "POST /delete_event/38/ HTTP/1.1" 200 17
+[05/Mar/2024 12:50:53] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 2
+[05/Mar/2024 12:50:54] "GET /add_event/ HTTP/1.1" 200 10087
+[05/Mar/2024 12:51:09] "POST /add_event/ HTTP/1.1" 302 0
+[05/Mar/2024 12:51:09] "GET /user_panel/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:51:09] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:52:34] "GET /user_panel/ HTTP/1.1" 200 7492
+[05/Mar/2024 12:52:35] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:52:35] "GET /user_panel/ HTTP/1.1" 200 7492
+[05/Mar/2024 12:52:35] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:52:36] "GET /user_panel/ HTTP/1.1" 200 7492
+[05/Mar/2024 12:52:37] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:54:08] "GET /user_panel/ HTTP/1.1" 200 7493
+[05/Mar/2024 12:54:08] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:54:25] "POST /event/39/status/ HTTP/1.1" 200 39
+[05/Mar/2024 12:54:25] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 251
+[05/Mar/2024 12:54:26] "POST /event/39/status/ HTTP/1.1" 200 40
+[05/Mar/2024 12:54:26] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 252
+[05/Mar/2024 12:54:30] "GET /logout/ HTTP/1.1" 302 0
+[05/Mar/2024 12:54:30] "GET / HTTP/1.1" 200 2747
+[05/Mar/2024 12:54:32] "GET /login/ HTTP/1.1" 200 1454
+[05/Mar/2024 12:54:41] "POST /login/ HTTP/1.1" 200 1711
+[05/Mar/2024 12:55:32] "GET /login HTTP/1.1" 301 0
+[05/Mar/2024 12:55:33] "GET /login/ HTTP/1.1" 200 1454
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/template/base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 5: 'static'. Did you forget to register or load this tag?
+[05/Mar/2024 12:58:08] "POST /login/ HTTP/1.1" 500 138525
+[05/Mar/2024 12:58:27] "GET /login/ HTTP/1.1" 200 1518
+[05/Mar/2024 12:58:28] "GET /static/bootstrap.min.css HTTP/1.1" 200 160303
+[05/Mar/2024 12:58:28] "GET /static/bootstrap.min.css.map HTTP/1.1" 404 1825
+[05/Mar/2024 12:58:30] "GET /login/ HTTP/1.1" 200 1518
+[05/Mar/2024 12:58:30] "GET /static/bootstrap.min.css.map HTTP/1.1" 404 1825
+[05/Mar/2024 12:58:31] "GET /login/ HTTP/1.1" 200 1518
+[05/Mar/2024 12:58:31] "GET /static/bootstrap.min.css.map HTTP/1.1" 404 1825
+Performing system checks...
+
+System check identified no issues (0 silenced).
+March 05, 2024 - 12:49:22
+Django version 4.2.9, using settings 'lan_group.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+True
+False
+Watching for file changes with StatReloader
+[05/Mar/2024 13:35:19] "GET / HTTP/1.1" 200 2728
+[05/Mar/2024 13:35:20] "GET / HTTP/1.1" 200 2728
+Invalid HTTP_HOST header: 'hideface.mooo.com:80'. You may need to add 'hideface.mooo.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'hideface.mooo.com:80'. You may need to add 'hideface.mooo.com' to ALLOWED_HOSTS.
+Bad Request: /hideface.mooo.com:80
+Invalid HTTP_HOST header: 'l.webcam02.dynv6.net'. You may need to add 'l.webcam02.dynv6.net' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'l.webcam02.dynv6.net'. You may need to add 'l.webcam02.dynv6.net' to ALLOWED_HOSTS.
+Bad Request: /http:/l.webcam02.dynv6.net/helloa
+[05/Mar/2024 13:39:07] "GET http://l.webcam02.dynv6.net/helloa?rnd=4dbfdcf481b4269973e752bcca69cf91&rn=879592364 HTTP/1.1" 400 66038
+[05/Mar/2024 13:39:08] code 400, message Bad request version ("AùÂó`h¬?\x04G\x12K\x9c\x19pÄpÕvïÖ\x19Á:\x86Í^¿3\x83í\x10\x00>\x13\x02\x13\x03\x13\x01À,À0\x00\x9fÌ©Ì¨ÌªÀ+À/\x00\x9eÀ$À(\x00kÀ#À'\x00gÀ")
+[05/Mar/2024 13:39:08] You're accessing the development server over HTTPS, but it only supports HTTP.
+[05/Mar/2024 13:39:09] code 400, message Bad request version ("¿'zc\x00>\x13\x02\x13\x03\x13\x01À,À0\x00\x9fÌ©Ì¨ÌªÀ+À/\x00\x9eÀ$À(\x00kÀ#À'\x00gÀ")
+[05/Mar/2024 13:39:09] You're accessing the development server over HTTPS, but it only supports HTTP.
+[05/Mar/2024 13:39:14] code 400, message Bad request syntax ('\x04\x01\x00P¹Ñ\x17+\x00')
+[05/Mar/2024 13:39:14] " P¹Ñ+ " 400 -
+[05/Mar/2024 13:39:19] code 400, message Bad request syntax ('\x05\x01\x00')
+[05/Mar/2024 13:39:19] " " 400 -
+[05/Mar/2024 13:39:24] code 400, message Bad request syntax ('\x04\x01\x00P\x00\x00\x00\x01\x00webcam1.twilightparadox.com\x00')
+[05/Mar/2024 13:39:24] " P    webcam1.twilightparadox.com " 400 -
+[05/Mar/2024 13:39:29] code 400, message Bad request syntax ('\x05\x01\x00')
+[05/Mar/2024 13:39:29] " " 400 -
