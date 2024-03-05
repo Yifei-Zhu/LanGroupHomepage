@@ -53,6 +53,7 @@ urlpatterns = [
     path('todo/', views.add_todo, name='add_todo'),
     path('todo/<int:todo_id>/', views.delete_todo, name='delete_todo'),
     path('update_todo_order/', views.update_todo_order, name='update_todo_order'),
+    path('toggle-todo-completed/<int:todo_id>/', views.toggle_todo_completed, name='toggle_todo_completed'),
 
 ]
 

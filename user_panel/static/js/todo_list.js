@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Loading todos...')
     const form = document.getElementById('new-todo-form');
     const titleInput = document.getElementById('new-todo-title');
     const descriptionInput = document.getElementById('new-todo-description');
@@ -6,21 +7,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 加载待办事项时调用 makeItemsDraggable 和 updateTodoOrder
     function loadTodos() {
+        console.log('Loading todos...');
         fetch('/todos/')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(todo => addTodoToDOM(todo));
-            makeItemsDraggable();
-        });
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(todo => addTodoToDOM(todo)); // 确保 todo 参数包含正确的 completed 状态
+                makeItemsDraggable();
+            });
     }
 
     // 添加新ToDo项到DOM
     function addTodoToDOM(todo) {
+        console.log("Todo completed status:", todo.completed); // 打印待办事项的完成状态
+    
         const li = document.createElement('li');
-        li.dataset.id = todo.id; // 设置待办事项的ID作为data-id属性
+        li.dataset.id = todo.id;
+        const isChecked = todo.completed ? 'checked' : '';
+        const isCompletedClass = todo.completed ? 'completed' : '';
         li.innerHTML = `
             <div class="todo-item">
-                <span class="${todo.completed ? 'completed' : ''}">${todo.title}: ${todo.description}</span>
+                <input type="checkbox" class="toggle-completed" ${isChecked}>
+                <span class="${isCompletedClass}">${todo.title}: ${todo.description}</span>
                 <button class="delete-todo" data-id="${todo.id}">Delete</button>
             </div>
         `;
@@ -30,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         makeItemsDraggable();
     }
+    
 
     // 创建新的ToDo项
     form.addEventListener('submit', function(e) {
@@ -69,6 +77,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // 事件委托来监听复选框的变化
+    document.getElementById('todo-list').addEventListener('change', function(e) {
+        if (e.target.classList.contains('toggle-completed')) {
+            const todoId = e.target.closest('li').getAttribute('data-id'); // 从 data-id 属性获取 ID
+            const completed = e.target.checked;
+            fetch(`/toggle-todo-completed/${todoId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({ completed: completed }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Todo completion status updated');
+                } else {
+                    console.error('Error updating todo completion status');
+                }
+            });
+        }
+    });
 
 
     // 辅助函数：获取Cookie值
@@ -86,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return cookieValue;
     }
-
+    
     function updateTodoOrder() {
         const todos = Array.from(document.querySelectorAll('#todo-list li')).map((item, index) => {
             return {

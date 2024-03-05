@@ -32,6 +32,7 @@ class TodoItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='todo_items', null=True, blank=True)
     order = models.IntegerField(default=0)  # 新增字段来存储排序顺序
-    
+    completed = models.BooleanField(default=False)  # 添加完成状态字段
+
     class Meta:
         ordering = ['order']  

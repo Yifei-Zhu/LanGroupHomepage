@@ -132,7 +132,7 @@ from django.views.decorators.http import require_http_methods
 import json
 @require_http_methods(["GET"])
 def load_todos(request):
-    todos = TodoItem.objects.all().values('id', 'title', 'description', 'created_at')
+    todos = TodoItem.objects.all().values('id', 'title', 'description', 'created_at','completed')
     todos_list = list(todos)
     return JsonResponse(todos_list, safe=False)
 
@@ -179,3 +179,19 @@ def update_todo_order(request):
         TodoItem.objects.filter(id=todo_id).update(order=order)
 
     return JsonResponse({'message': 'Order updated successfully'})
+
+from django.views.decorators.csrf import csrf_exempt
+# import logging
+
+# logger = logging.getLogger(__name__)
+@csrf_exempt
+def toggle_todo_completed(request, todo_id):
+    # if request.method == 'POST':
+    data = json.loads(request.body)
+    completed = data.get('completed')
+    todo = TodoItem.objects.get(id=todo_id)
+    print(todo.completed)
+    todo.completed = completed
+    print(todo.completed)
+    todo.save()
+    return JsonResponse({'message': 'Todo completion status updated successfully'})

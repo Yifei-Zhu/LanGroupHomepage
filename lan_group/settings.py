@@ -158,3 +158,21 @@ EMAIL_HOST_PASSWORD = 'nonadiabatic2024'
 DEFAULT_FROM_EMAIL = 'lan_group@outlook.com'
 
 LOGIN_REDIRECT_URL = '/'
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
