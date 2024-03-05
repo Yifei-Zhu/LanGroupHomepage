@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="{% static 'todo_list.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/dist/sortable.min.js"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.10.2/dist/sortable.min.js"></script> {% endcomment %}
 
 </head>
 <body>
@@ -23,5 +23,6 @@
         <ul id="todo-list"></ul>
     </div>
     <script src="{% static 'js/todo_list.js' %}"></script>
+    <script src="{% static 'js/Sortable.min.js' %}"></script>
 </body>
 </html>
