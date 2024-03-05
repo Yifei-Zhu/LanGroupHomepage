@@ -5974,3 +5974,124 @@ Forbidden (CSRF token from POST incorrect.): /login/
 [28/Feb/2024 12:56:30] "POST /login/ HTTP/1.1" 302 0
 [28/Feb/2024 12:56:31] "GET / HTTP/1.1" 200 2725
 [28/Feb/2024 12:58:48] "GET / HTTP/1.1" 200 2720
+Watching for file changes with StatReloader
+[05/Mar/2024 10:20:10] "GET / HTTP/1.1" 200 2747
+[05/Mar/2024 10:20:10] "GET /static/style.css HTTP/1.1" 200 3974
+[05/Mar/2024 10:20:10] "GET /static/homepage/home.css HTTP/1.1" 200 2384
+[05/Mar/2024 10:20:10] "GET /static/images/lan.jpg HTTP/1.1" 200 22572
+[05/Mar/2024 10:20:10] "GET /static/homepage/js/home.js HTTP/1.1" 200 291
+[05/Mar/2024 10:20:11] "GET /static/homepage/images/home.webp HTTP/1.1" 200 351280
+Invalid HTTP_HOST header: '193.149.189.126:7227'. You may need to add '193.149.189.126' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '193.149.189.126:7227'. You may need to add '193.149.189.126' to ALLOWED_HOSTS.
+Bad Request: /193.149.189.126:7227
+[05/Mar/2024 10:38:37] "GET / HTTP/1.1" 200 2747
+[05/Mar/2024 10:45:52] code 400, message Bad request version ('OÑËÜ®Ëd')
+[05/Mar/2024 10:45:52] "   TZ         .    I¨À )z» zÚf Ò~Uñi»©                ÃÐ¢|¦v½óOÑËÜ®Ëd" 400 -
+[05/Mar/2024 10:48:20] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00')
+[05/Mar/2024 10:48:20] "    c                           " 400 -
+[05/Mar/2024 11:27:24] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[05/Mar/2024 11:27:24] "  /*à     Cookie: mstshash=Administr" 400 -
+Invalid HTTP_HOST header: 'webcam02.dynv6.net:80'. You may need to add 'webcam02.dynv6.net' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'webcam02.dynv6.net:80'. You may need to add 'webcam02.dynv6.net' to ALLOWED_HOSTS.
+Bad Request: /webcam02.dynv6.net:80
+[05/Mar/2024 11:35:58] "CONNECT webcam02.dynv6.net:80 HTTP/1.1" 400 65054
+Invalid HTTP_HOST header: 'hideface.mooo.com'. You may need to add 'hideface.mooo.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/root/miniconda3/envs/group_site/lib/python3.8/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'hideface.mooo.com'. You may need to add 'hideface.mooo.com' to ALLOWED_HOSTS.
+Bad Request: /http:/hideface.mooo.com/hellod
+[05/Mar/2024 11:36:00] code 400, message Bad request version ("§ù#\\¬+Ñ\x13´ùä\x00>\x13\x02\x13\x03\x13\x01À,À0\x00\x9fÌ©Ì¨ÌªÀ+À/\x00\x9eÀ$À(\x00kÀ#À'\x00gÀ")
+[05/Mar/2024 11:36:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[05/Mar/2024 11:36:00] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03Þuh$$ýl\x19>µ')
+[05/Mar/2024 11:36:00] You're accessing the development server over HTTPS, but it only supports HTTP.
+[05/Mar/2024 11:36:11] code 400, message Bad request syntax ('\x04\x01\x00P\x90LR¦\x00')
+[05/Mar/2024 11:36:11] " PLR¦ " 400 -
+[05/Mar/2024 11:36:22] code 400, message Bad request syntax ('\x04\x01\x00P\x00\x00\x00\x01\x00r.webcam02.dynv6.net\x00')
+[05/Mar/2024 11:36:22] " P    r.webcam02.dynv6.net " 400 -
+[05/Mar/2024 11:38:01] code 400, message Bad request syntax ('\x04\x01\x00PnòD\x04\x00')
+[05/Mar/2024 11:38:01] " PnòD " 400 -
+[05/Mar/2024 11:49:18] code 400, message Bad HTTP/0.9 request type ('\x00\x00\x00')
+[05/Mar/2024 11:49:18] "    c                           " 400 -
+[05/Mar/2024 12:09:03] "GET /todolist/ HTTP/1.1" 200 863
+[05/Mar/2024 12:09:07] "GET /static/todo_list.css HTTP/1.1" 304 0
+[05/Mar/2024 12:09:07] "GET /static/js/todo_list.js HTTP/1.1" 200 8072
+[05/Mar/2024 12:09:07] "GET /static/js/Sortable.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:09:07] "GET /todos/ HTTP/1.1" 200 110
+[05/Mar/2024 12:09:10] "POST /todo/ HTTP/1.1" 201 86
+[05/Mar/2024 12:09:15] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:09:15] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:09:15] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:09:15] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:09:17] "POST /toggle-todo-completed/16/ HTTP/1.1" 200 58
+[05/Mar/2024 12:09:17] "GET /calendar/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:09:17] "GET /static/main.min.css HTTP/1.1" 304 0
+[05/Mar/2024 12:09:17] "GET /static/js/jquery.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:09:18] "GET /static/js/main.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:09:18] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 2
+[05/Mar/2024 12:09:19] "GET /todolist/ HTTP/1.1" 200 863
+[05/Mar/2024 12:09:19] "GET /todos/ HTTP/1.1" 200 217
+[05/Mar/2024 12:09:21] "DELETE /todo/16/ HTTP/1.1" 204 40
+[05/Mar/2024 12:09:21] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:09:21] "DELETE /todo/17/ HTTP/1.1" 204 40
+[05/Mar/2024 12:09:21] "POST /update_todo_order/ HTTP/1.1" 200 41
+[05/Mar/2024 12:10:18] "GET /calendar HTTP/1.1" 301 0
+[05/Mar/2024 12:10:20] "GET /calendar/ HTTP/1.1" 200 7343
+[05/Mar/2024 12:10:23] "GET /static/js/jquery.min.js HTTP/1.1" 200 89475
+[05/Mar/2024 12:26:55] "GET / HTTP/1.1" 200 2728
+[05/Mar/2024 12:26:55] "GET / HTTP/1.1" 200 2728
+Not Found: /favicon.ico
+[05/Mar/2024 12:26:55] "GET /favicon.ico HTTP/1.1" 404 7175
+[05/Mar/2024 12:26:56] "GET /user_panel/ HTTP/1.1" 200 7406
+[05/Mar/2024 12:26:59] "GET /static/user_panel.css HTTP/1.1" 304 0
+[05/Mar/2024 12:26:59] "GET /static/main.min.css HTTP/1.1" 304 0
+[05/Mar/2024 12:26:59] "GET /media/avatars/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240301155147_ZDHaZSj.png HTTP/1.1" 304 0
+[05/Mar/2024 12:26:59] "GET /static/js/main.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:26:59] "GET /static/js/jquery.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:26:59] "GET /events/?start=2024-02-25T00%3A00%3A00%2B08%3A00&end=2024-04-07T00%3A00%3A00%2B08%3A00 HTTP/1.1" 200 2
+[05/Mar/2024 12:27:02] "GET /todolist/ HTTP/1.1" 200 863
+[05/Mar/2024 12:27:06] "GET /static/js/todo_list.js HTTP/1.1" 304 0
+[05/Mar/2024 12:27:06] "GET /static/js/Sortable.min.js HTTP/1.1" 304 0
+[05/Mar/2024 12:27:06] "GET /todos/ HTTP/1.1" 200 2
+[05/Mar/2024 12:27:08] "GET /admin/ HTTP/1.1" 200 11655
+[05/Mar/2024 12:27:26] "GET /admin/auth/user/add/ HTTP/1.1" 200 12495
+[05/Mar/2024 12:27:26] "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[05/Mar/2024 12:27:31] "GET /admin/ HTTP/1.1" 200 11655
+[05/Mar/2024 12:27:32] "GET /admin/auth/user/ HTTP/1.1" 200 20416
+[05/Mar/2024 12:27:32] "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[05/Mar/2024 12:27:37] "GET /admin/auth/user/add/ HTTP/1.1" 200 12495
+[05/Mar/2024 12:27:37] "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[05/Mar/2024 12:27:49] "POST /admin/auth/user/add/ HTTP/1.1" 302 0
+[05/Mar/2024 12:27:50] "GET /admin/auth/user/23/change/ HTTP/1.1" 200 26146
+[05/Mar/2024 12:27:50] "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[05/Mar/2024 12:27:59] "POST /admin/auth/user/23/change/ HTTP/1.1" 302 0
+[05/Mar/2024 12:27:59] "GET /admin/auth/user/ HTTP/1.1" 200 21017
+[05/Mar/2024 12:27:59] "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+[05/Mar/2024 12:28:00] "GET /user_panel HTTP/1.1" 301 0
+[05/Mar/2024 12:28:00] "GET /user_panel/ HTTP/1.1" 302 0
+Not Found: /accounts/login/
+[05/Mar/2024 12:28:01] "GET /accounts/login/?next=/user_panel/ HTTP/1.1" 404 7205

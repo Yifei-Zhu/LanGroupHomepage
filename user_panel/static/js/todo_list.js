@@ -37,30 +37,35 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         makeItemsDraggable();
     }
-    
+
 
     // 创建新的ToDo项
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         const title = titleInput.value.trim();
         const description = descriptionInput.value.trim();
-
-        if (title && description) {
-            fetch('/todo/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken') // 获取CSRF令牌
-                },
-                body: JSON.stringify({title: title, description: description})
-            })
-            .then(response => response.json())
-            .then(todo => {
-                addTodoToDOM(todo); // 将新ToDo项添加到DOM
-                titleInput.value = '';
-                descriptionInput.value = '';
-            });
+    
+        // 检查title或description是否为空
+        if (!title || !description) {
+            // 如果任何一个为空，则弹出提醒
+            alert('Title and description cannot be empty!');
+            return; // 阻止进一步执行
         }
+    
+        fetch('/todo/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') // 获取CSRF令牌
+            },
+            body: JSON.stringify({title: title, description: description})
+        })
+        .then(response => response.json())
+        .then(todo => {
+            addTodoToDOM(todo); // 将新ToDo项添加到DOM
+            titleInput.value = '';
+            descriptionInput.value = '';
+        });
     });
 
     // 删除ToDo项
@@ -196,5 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     loadTodos(); // 页面加载时从服务器加载ToDo项
 });
+
 
 
