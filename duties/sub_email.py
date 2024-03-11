@@ -26,7 +26,7 @@ def get_group_emails(group):
 def create_email_message(group,subject):
     member_names = [f"{user.first_name} {user.last_name}" if user.first_name and user.last_name else user.username for user in group.users.all()]
     members_list = ", ".join(member_names)
-    message = f"Hello, it's your turn to be on duty next week.\nPlease communicate with your group members and complete the duty at {subject} by next Tuesday afternoon.\nYour team members are: {members_list}."
+    message = f"Hello, it's your turn to be on duty this week.\nPlease communicate with your group members and complete the duty at {subject} by this Tuesday afternoon.\nYour team members are: {members_list}."
     return message
 
 from django.core.mail import send_mail

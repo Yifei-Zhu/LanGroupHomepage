@@ -11,10 +11,31 @@
     <!-- 引入flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
+        .home-button {
+            margin-bottom: 50px; /* 给按钮和表单之间留出一些空间 */
+        }
+        
+        .home-button a {
+            display: inline-block; /* 或者使用 'block'，取决于你的具体布局需求 */
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .home-button a:hover {
+            background-color: #0056b3;
+        }
+        
     </style>
 </head>
 <body>
 <div class="container mt-5">
+    <div class="home-button">
+        <a href="{% url 'calendar' %}">Return to User-Panel</a>
+    </div>
     <h2>Add New Event</h2>
     <form id="eventForm" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -95,3 +116,4 @@
 </script>
 </body>
 </html>
+
