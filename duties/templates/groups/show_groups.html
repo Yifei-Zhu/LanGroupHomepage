@@ -1,38 +1,71 @@
-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Groups</title>
+    <title>Duty info</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-        .group-card {
-            margin-bottom: 20px;
+
+<style>
+    .group-card {
+        margin-bottom: 20px;
+    }
+    .group-header {
+        background-color: #0056b3; /* 深蓝色，比原来的亮蓝色暗一些 */
+        color: white;
+        padding: 10px;
+    }
+    .group-body {
+        padding: 10px;
+    }
+    .member-item {
+        background-color: #e9ecef; /* 更柔和的灰色 */
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .home-button {
+        margin-bottom: 20px;
+    }
+    
+    .home-button a {
+        display: inline-block;
+        background-color: #0056b3; /* 与.group-header相同颜色 */
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    
+    .home-button a:hover {
+        background-color: #004080; /* 悬停时的深蓝色 */
+    }
+    
+    .container {
+        max-width: 960px;
+        margin: 0 auto; /* 使容器在页面中居中 */
+    }
+    
+    @media (min-width: 992px) {
+        .row {
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 80%;
         }
-        .group-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-        }
-        .group-body {
-            padding: 10px;
-        }
-        .member-item {
-            background-color: #f8f9fa;
-            margin-bottom: 5px;
-            padding: 5px;
-            border-radius: 5px;
-        }
-    </style>
+    }
+</style>
+
+
 </head>
 <body>
     <div class="container mt-4">
-        <div class="mb-4">
-            <a href="{% url 'calendar' %}" class="btn btn-primary">Return to User Panel</a>
+        <div class="home-button">
+            <a href="{% url 'calendar' %}">Return to User Panel</a>
         </div>
-        <h1 class="text-center mb-4">Groups</h1>
+        {% comment %} <h1 class="text-center mb-4">Groups</h1> {% endcomment %}
         <div class="row">
             {% for group in groups %}
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-4 col-md-6"> <!-- 调整列的宽度以减少每行的项目数 -->
                 <div class="card group-card">
                     <div class="group-header">
                         Group {{ forloop.counter }}

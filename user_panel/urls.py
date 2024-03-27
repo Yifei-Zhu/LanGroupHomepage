@@ -55,6 +55,9 @@ urlpatterns = [
     path('update_todo_order/', views.update_todo_order, name='update_todo_order'),
     path('toggle-todo-completed/<int:todo_id>/', views.toggle_todo_completed, name='toggle_todo_completed'),
 
+    path('contacts/', views.users_contacts, name='contacts'),
+
+
 ]
 
 

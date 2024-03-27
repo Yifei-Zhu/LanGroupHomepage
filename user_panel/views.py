@@ -195,3 +195,11 @@ def toggle_todo_completed(request, todo_id):
     print(todo.completed)
     todo.save()
     return JsonResponse({'message': 'Todo completion status updated successfully'})
+
+from django.contrib.auth.models import User
+from .models import UserProfile
+def users_contacts(request):
+    # 按lastname排序，如果lastname相同，则按firstname排序
+    users = User.objects.all().order_by('last_name', 'first_name').select_related('userprofile')
+    return render(request, 'registration/users_contacts.html', {'users': users})
+
