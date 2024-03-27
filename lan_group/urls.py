@@ -19,6 +19,8 @@ from django.urls import path,include
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +30,15 @@ urlpatterns = [
     path('', include('zhuyf_database.urls')),
     path('', include('duties.urls')),
     path('', include('user_panel.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # 手动服务静态文件和媒体文件的代码（请注意，这不推荐用于生产环境）
+    urlpatterns += [
+        path('static/<path:path>', serve, {'document_root': settings.STATIC_ROOT}),
+        path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
+

@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*9qqxurw%%@z!h$78f&z2e1b5t2z9_8w#8lhdgx-*9v(7&f#hw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['zhuyf.chat', 'www.zhuyf.chat', '121.41.79.67', '127.0.0.1']
 
